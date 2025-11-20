@@ -1,10 +1,12 @@
+'use client';
+
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useCompare } from '@/contexts/CompareContext';
 import { Truck } from '@/models/TruckTypes';
 import { GitCompare } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 interface CompareButtonProps {
   truck: Truck;
