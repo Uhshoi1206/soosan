@@ -3,7 +3,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { Truck } from '@/models/TruckTypes';
 import { toast } from '@/components/ui/use-toast';
-import { useRouter, usePathname } from 'next/navigation';
 
 interface CompareContextType {
   compareItems: Truck[];
@@ -22,10 +21,6 @@ const STORAGE_KEY = 'xetaiviet_compare_items';
 
 export const CompareProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [compareItems, setCompareItems] = useState<Truck[]>([]);
-
-  // Next.js navigation hooks
-  const router = useRouter();
-  const pathname = usePathname();
   
   // Load từ localStorage khi khởi tạo
   useEffect(() => {

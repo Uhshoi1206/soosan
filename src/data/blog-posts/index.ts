@@ -1,6 +1,12 @@
 
 import { BlogPost } from '@/models/BlogPost';
 import { loadAllBlogPosts } from '@/utils/blogLoader';
+import * as industryNewsModule from './industry-news';
+import * as productReviewModule from './product-review';
+import * as buyingGuideModule from './buying-guide';
+import * as driverTipsModule from './driver-tips';
+import * as maintenanceModule from './maintenance';
+import * as technologyModule from './technology';
 
 // Tạo một instance để lưu trữ dữ liệu đã được load
 let cachedBlogData: {
@@ -14,39 +20,66 @@ let cachedBlogData: {
 } | null = null;
 
 // Load dữ liệu blog và luôn refresh để có bài viết mới nhất
-const getBlogData = async () => {
-  // Luôn load lại để đảm bảo có bài viết mới nhất
-  cachedBlogData = await loadAllBlogPosts();
+const getBlogData = () => {
+  // Synchronous load for static export
+  if (!cachedBlogData || cachedBlogData.allBlogPosts.length === 0) {
+    cachedBlogData = loadAllBlogPostsSync();
+  }
   return cachedBlogData;
 };
 
-// Tạo các biến empty để export ngay lập tức, sau đó sẽ được populate
-let industryNewsPosts: BlogPost[] = [];
-let productReviewPosts: BlogPost[] = [];
-let buyingGuidePosts: BlogPost[] = [];
-let driverTipsPosts: BlogPost[] = [];
-let maintenancePosts: BlogPost[] = [];
-let technologyPosts: BlogPost[] = [];
-let allBlogPosts: BlogPost[] = [];
+// Synchronous version for build time
+const loadAllBlogPostsSync = () => {
+  const industryNews = Object.values(industryNewsModule).filter((item): item is BlogPost =>
+    typeof item === 'object' && item !== null && 'id' in item
+  );
+  const productReviews = Object.values(productReviewModule).filter((item): item is BlogPost =>
+    typeof item === 'object' && item !== null && 'id' in item
+  );
+  const buyingGuides = Object.values(buyingGuideModule).filter((item): item is BlogPost =>
+    typeof item === 'object' && item !== null && 'id' in item
+  );
+  const driverTips = Object.values(driverTipsModule).filter((item): item is BlogPost =>
+    typeof item === 'object' && item !== null && 'id' in item
+  );
+  const maintenance = Object.values(maintenanceModule).filter((item): item is BlogPost =>
+    typeof item === 'object' && item !== null && 'id' in item
+  );
+  const technology = Object.values(technologyModule).filter((item): item is BlogPost =>
+    typeof item === 'object' && item !== null && 'id' in item
+  );
 
-// Load dữ liệu ngay khi module được import
-getBlogData().then(data => {
-  industryNewsPosts.length = 0;
-  productReviewPosts.length = 0;
-  buyingGuidePosts.length = 0;
-  driverTipsPosts.length = 0;
-  maintenancePosts.length = 0;
-  technologyPosts.length = 0;
-  allBlogPosts.length = 0;
-  
-  industryNewsPosts.push(...data.industryNewsPosts);
-  productReviewPosts.push(...data.productReviewPosts);
-  buyingGuidePosts.push(...data.buyingGuidePosts);
-  driverTipsPosts.push(...data.driverTipsPosts);
-  maintenancePosts.push(...data.maintenancePosts);
-  technologyPosts.push(...data.technologyPosts);
-  allBlogPosts.push(...data.allBlogPosts);
-});
+  const allPosts = [
+    ...industryNews,
+    ...productReviews,
+    ...buyingGuides,
+    ...driverTips,
+    ...maintenance,
+    ...technology,
+  ];
+
+  return {
+    allBlogPosts: allPosts,
+    industryNewsPosts: industryNews,
+    productReviewPosts: productReviews,
+    buyingGuidePosts: buyingGuides,
+    driverTipsPosts: driverTips,
+    maintenancePosts: maintenance,
+    technologyPosts: technology,
+  };
+};
+
+// Initialize data immediately
+cachedBlogData = loadAllBlogPostsSync();
+
+// Export initialized data
+const industryNewsPosts = cachedBlogData.industryNewsPosts;
+const productReviewPosts = cachedBlogData.productReviewPosts;
+const buyingGuidePosts = cachedBlogData.buyingGuidePosts;
+const driverTipsPosts = cachedBlogData.driverTipsPosts;
+const maintenancePosts = cachedBlogData.maintenancePosts;
+const technologyPosts = cachedBlogData.technologyPosts;
+const allBlogPosts = cachedBlogData.allBlogPosts;
 
 export { 
   industryNewsPosts, 

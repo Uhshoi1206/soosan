@@ -3,7 +3,6 @@
 
 import React from 'react';
 import Link from 'next/link'
-import { useRouter } from 'next/navigation';
 import { Truck, getVehicleUrlPrefix } from '@/models/TruckTypes';
 import { Badge } from '@/components/ui/badge';
 import { useCompare } from '@/contexts/CompareContext';
@@ -17,7 +16,6 @@ interface TruckItemProps {
 const TruckItem = ({ truck }: TruckItemProps) => {
   const vehicleUrlPrefix = getVehicleUrlPrefix(truck.type);
   const { addToCompare, removeFromCompare, isInCompare, compareItems } = useCompare();
-  const router = useRouter();
   
   const handleToggleCompare = (e: React.MouseEvent) => {
     e.preventDefault(); // Ngăn chặn sự kiện click lan tỏa đến thành phần cha
@@ -33,8 +31,7 @@ const TruckItem = ({ truck }: TruckItemProps) => {
         setTimeout(() => {
           const shouldNavigate = window.confirm('Bạn đã thêm xe vào danh sách so sánh. Bạn có muốn đi đến trang so sánh ngay bây giờ không?');
           if (shouldNavigate) {
-            router.push('/so-sanh-xe');
-            window.scrollTo(0, 0);
+            window.location.href = '/so-sanh-xe';
           }
         }, 300);
       }

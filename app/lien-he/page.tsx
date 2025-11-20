@@ -1,4 +1,3 @@
-export const dynamic = 'force-dynamic';
 import { Metadata } from 'next';
 import { generateSEO } from '@/lib/seo';
 import ContactClient from './contact-client';

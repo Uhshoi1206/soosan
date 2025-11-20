@@ -3,7 +3,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link'
-import { useRouter } from 'next/navigation';
 import { Search, Phone, Calculator, CreditCard, GitCompare } from 'lucide-react';
 import { Button } from './ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -19,7 +18,6 @@ import { useCompare } from '@/contexts/CompareContext';
 
 const Header: React.FC = () => {
   const isMobile = useIsMobile();
-  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [open, setOpen] = useState(false);
   const { generateCompareUrl } = useCompare();
@@ -27,14 +25,14 @@ const Header: React.FC = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchTerm)}`);
+      window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`;
       setOpen(false);
     }
   };
   
   const handleCompareClick = () => {
     const compareUrl = generateCompareUrl();
-    router.push(compareUrl);
+    window.location.href = compareUrl;
   };
 
   return (

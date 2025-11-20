@@ -12,16 +12,14 @@ interface PageProps {
   }>;
 }
 
-// Disable static generation for now
-export const dynamicParams = true;
-export const dynamic = 'force-dynamic';
+export const dynamicParams = false;
 
-// export async function generateStaticParams() {
-//   return trucks.map((truck) => ({
-//     type: truck.type,
-//     slug: truck.slug,
-//   }));
-// }
+export async function generateStaticParams() {
+  return trucks.map((truck) => ({
+    type: truck.type,
+    slug: truck.slug,
+  }));
+}
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { type, slug } = await params;

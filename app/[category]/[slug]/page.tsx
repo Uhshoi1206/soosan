@@ -1,4 +1,3 @@
-export const dynamic = 'force-dynamic';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBlogData } from '@/data/blog-posts';
@@ -13,17 +12,22 @@ interface PageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  const { allBlogPosts } = await getBlogData();
-  return allBlogPosts.map((post) => ({
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  const { allBlogPosts } = getBlogData();
+  console.log('[generateStaticParams] Blog posts count:', allBlogPosts.length);
+  const params = allBlogPosts.map((post) => ({
     category: post.category,
     slug: post.slug,
   }));
+  console.log('[generateStaticParams] Params:', params.length);
+  return params;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category, slug } = await params;
-  const { allBlogPosts } = await getBlogData();
+  const { allBlogPosts } = getBlogData();
   const post = allBlogPosts.find((p) => p.category === category && p.slug === slug);
 
   if (!post) {
@@ -38,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { category, slug } = await params;
-  const { allBlogPosts } = await getBlogData();
+  const { allBlogPosts } = getBlogData();
   const post = allBlogPosts.find((p) => p.category === category && p.slug === slug);
 
   if (!post) {

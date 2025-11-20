@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { useCompare } from '@/contexts/CompareContext';
 import { Truck } from '@/models/TruckTypes';
 import { GitCompare } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 
 interface CompareButtonProps {
   truck: Truck;
@@ -25,7 +24,6 @@ const CompareButton: React.FC<CompareButtonProps> = ({
 }) => {
   const { addToCompare, removeFromCompare, isInCompare, compareItems } = useCompare();
   const isAdded = isInCompare(truck.id);
-  const router = useRouter();
 
   const handleClick = () => {
     if (isAdded) {
@@ -38,7 +36,7 @@ const CompareButton: React.FC<CompareButtonProps> = ({
         setTimeout(() => {
           const shouldNavigate = window.confirm('Bạn đã thêm xe vào danh sách so sánh. Bạn có muốn đi đến trang so sánh ngay bây giờ không?');
           if (shouldNavigate) {
-            router.push('/so-sanh-xe');
+            window.location.href = '/so-sanh-xe';
           }
         }, 300);
       }
