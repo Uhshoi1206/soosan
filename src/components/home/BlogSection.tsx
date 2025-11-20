@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { CalendarDays, Clock, ChevronRight, Tag, TrendingUp, User, Eye, Lightbulb, Zap, MessageCircle, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BlogPost, blogCategorySlugs } from '@/models/BlogPost';
@@ -38,7 +38,7 @@ const FeaturedBlogPost = ({ post, categories, getPostUrl }: {
   };
 
   return (
-    <Link to={getPostUrl(post)} className="group">
+    <Link href={getPostUrl(post)} className="group">
       <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 h-full flex flex-col">
         <div className="aspect-[16/9] relative overflow-hidden">
           <OptimizedImage
@@ -128,7 +128,7 @@ const RecentBlogPost = ({ post, categories, getPostUrl }: {
   };
 
   return (
-    <Link to={getPostUrl(post)} className="group">
+    <Link href={getPostUrl(post)} className="group">
       <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300 h-full flex">
         <div className="w-1/3 aspect-square relative overflow-hidden">
           <OptimizedImage
@@ -191,7 +191,7 @@ const CarouselBlogPost = ({ post, categories, getPostUrl }: {
   };
 
   return (
-    <Link to={getPostUrl(post)} className="group h-full">
+    <Link href={getPostUrl(post)} className="group h-full">
       <div className="bg-white rounded-lg overflow-hidden shadow-sm h-full hover:shadow-md transition duration-300 flex flex-col">
         <div className="aspect-video relative overflow-hidden">
           <OptimizedImage
@@ -348,7 +348,7 @@ const BlogSection = ({ posts, categories }: BlogSectionProps) => {
 
         <div className="text-center mt-10">
           <Button asChild variant="outline" className="px-6 border-primary text-primary hover:bg-primary/10">
-            <Link to="/blog" className="flex items-center gap-2">
+            <Link href="/blog" className="flex items-center gap-2">
               Xem tất cả bài viết
               <ChevronRight className="h-4 w-4" />
             </Link>

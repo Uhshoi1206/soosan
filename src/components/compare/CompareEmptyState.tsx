@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { GitCompare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -15,7 +15,7 @@ const CompareEmptyState = () => {
         Thêm các xe bạn muốn so sánh từ trang danh mục hoặc trang chi tiết sản phẩm
       </p>
       <Button asChild size="lg" className="bg-primary hover:bg-primary-700">
-        <Link to="/danh-muc-xe">
+        <Link href="/danh-muc-xe">
           Chọn xe để so sánh
         </Link>
       </Button>

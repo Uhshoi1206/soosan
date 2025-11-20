@@ -4,7 +4,7 @@ import SectionTitle from '@/components/SectionTitle';
 import { Truck, getVehicleUrlPrefix } from '@/models/TruckTypes';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Star } from 'lucide-react';
 import {
   Carousel,
@@ -225,7 +225,7 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
             </AspectRatio>
           </div>
           <div className="flex-1">
-            <Link to={productUrl} className="font-semibold hover:underline text-sm line-clamp-2">
+            <Link href={productUrl} className="font-semibold hover:underline text-sm line-clamp-2">
               {item.product.name}
             </Link>
             <div className="text-xs text-gray-500 mt-0.5">{brand}</div>
@@ -254,7 +254,7 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
             )}
             
           </div>
-          <Link to={productUrl} className="text-primary text-xs hover:underline">
+          <Link href={productUrl} className="text-primary text-xs hover:underline">
             Xem sản phẩm
           </Link>
         </div>

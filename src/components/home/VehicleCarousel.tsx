@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Truck } from '@/models/TruckTypes';
 import TruckItem from '../TruckItem';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 interface VehicleCarouselProps {

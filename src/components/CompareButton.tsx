@@ -23,7 +23,7 @@ const CompareButton: React.FC<CompareButtonProps> = ({
 }) => {
   const { addToCompare, removeFromCompare, isInCompare, compareItems } = useCompare();
   const isAdded = isInCompare(truck.id);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleClick = () => {
     if (isAdded) {
@@ -36,7 +36,7 @@ const CompareButton: React.FC<CompareButtonProps> = ({
         setTimeout(() => {
           const shouldNavigate = window.confirm('Bạn đã thêm xe vào danh sách so sánh. Bạn có muốn đi đến trang so sánh ngay bây giờ không?');
           if (shouldNavigate) {
-            navigate('/so-sanh-xe');
+            router.push('/so-sanh-xe');
           }
         }, 300);
       }

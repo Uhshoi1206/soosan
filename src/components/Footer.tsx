@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Phone, Mail, MapPin, Facebook, MessageCircle, Youtube } from 'lucide-react';
 import { FaTiktok } from 'react-icons/fa';
 import AddressRegions from './AddressRegions';
@@ -91,52 +91,52 @@ const Footer: React.FC = () => {
             <h3 className="font-heading text-xl font-bold mb-4">Liên kết nhanh</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href="/" className="text-gray-300 hover:text-primary transition-colors">
                   Trang chủ
                 </Link>
               </li>
               <li>
-                <Link to="/gioi-thieu" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href="/gioi-thieu" className="text-gray-300 hover:text-primary transition-colors">
                   Giới thiệu
                 </Link>
               </li>
               <li>
-                <Link to="/lien-he" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href="/lien-he" className="text-gray-300 hover:text-primary transition-colors">
                   Liên hệ
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href="/blog" className="text-gray-300 hover:text-primary transition-colors">
                   Tin tức
                 </Link>
                 <ul className="pl-4 mt-2 space-y-2">
                   <li>
-                    <Link to="/danh-muc-bai-viet/tin-tuc-nganh-van-tai" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                    <Link href="/danh-muc-bai-viet/tin-tuc-nganh-van-tai" className="text-gray-400 hover:text-primary transition-colors text-sm">
                       Tin Tức Ngành Vận Tải
                     </Link>
                   </li>
                   <li>
-                    <Link to="/danh-muc-bai-viet/danh-gia-xe" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                    <Link href="/danh-muc-bai-viet/danh-gia-xe" className="text-gray-400 hover:text-primary transition-colors text-sm">
                       Đánh Giá Xe
                     </Link>
                   </li>
                   <li>
-                    <Link to="/danh-muc-bai-viet/kinh-nghiem-lai-xe" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                    <Link href="/danh-muc-bai-viet/kinh-nghiem-lai-xe" className="text-gray-400 hover:text-primary transition-colors text-sm">
                       Kinh Nghiệm Lái Xe
                     </Link>
                   </li>
                   <li>
-                    <Link to="/danh-muc-bai-viet/bao-duong" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                    <Link href="/danh-muc-bai-viet/bao-duong" className="text-gray-400 hover:text-primary transition-colors text-sm">
                       Bảo Dưỡng
                     </Link>
                   </li>
                   <li>
-                    <Link to="/danh-muc-bai-viet/tu-van-mua-xe" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                    <Link href="/danh-muc-bai-viet/tu-van-mua-xe" className="text-gray-400 hover:text-primary transition-colors text-sm">
                       Tư Vấn Mua Xe
                     </Link>
                   </li>
                   <li>
-                    <Link to="/danh-muc-bai-viet/cong-nghe-doi-moi" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                    <Link href="/danh-muc-bai-viet/cong-nghe-doi-moi" className="text-gray-400 hover:text-primary transition-colors text-sm">
                       Công Nghệ & Đổi Mới
                     </Link>
                   </li>
@@ -151,7 +151,7 @@ const Footer: React.FC = () => {
               <ul className="space-y-2">
                 {getEnabledTypes().map((key) => (
                   <li key={key}>
-                    <Link to={`/danh-muc-xe?type=${key}`} className="text-gray-300 hover:text-primary transition-colors">
+                    <Link href={`/danh-muc-xe?type=${key}`} className="text-gray-300 hover:text-primary transition-colors">
                       {getCategoryName(key)}
                     </Link>
                   </li>
@@ -163,17 +163,17 @@ const Footer: React.FC = () => {
               <h4 className="font-heading text-lg font-bold mb-3 text-primary-100">Tiện ích</h4>
               <ul className="space-y-2">
                 <li>
-                  <Link to="/so-sanh-xe" className="text-gray-300 hover:text-primary transition-colors">
+                  <Link href="/so-sanh-xe" className="text-gray-300 hover:text-primary transition-colors">
                     So sánh xe
                   </Link>
                 </li>
                 <li>
-                  <Link to="/du-toan-chi-phi" className="text-gray-300 hover:text-primary transition-colors">
+                  <Link href="/du-toan-chi-phi" className="text-gray-300 hover:text-primary transition-colors">
                     Dự toán chi phí
                   </Link>
                 </li>
                 <li>
-                  <Link to="/tinh-lai-suat" className="text-gray-300 hover:text-primary transition-colors">
+                  <Link href="/tinh-lai-suat" className="text-gray-300 hover:text-primary transition-colors">
                     Tính lãi suất vay
                   </Link>
                 </li>
@@ -274,10 +274,10 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between">
             <p className="text-gray-400">© 2025 Soosan (Doosung). Tất cả các quyền được bảo lưu.</p>
             <div className="flex space-x-4">
-              <Link to="/chinh-sach-bao-mat" className="text-gray-400 hover:text-primary">
+              <Link href="/chinh-sach-bao-mat" className="text-gray-400 hover:text-primary">
                 Chính sách bảo mật
               </Link>
-              <Link to="/dieu-khoan-su-dung" className="text-gray-400 hover:text-primary">
+              <Link href="/dieu-khoan-su-dung" className="text-gray-400 hover:text-primary">
                 Điều khoản sử dụng
               </Link>
             </div>

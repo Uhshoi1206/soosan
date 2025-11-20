@@ -1,34 +1,12 @@
-import type { Metadata } from 'next';
+'use client';
+
 import { Inter } from 'next/font/google';
 import '../src/index.css';
-import { generateSEO } from '@/lib/seo';
 import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/structured-data';
+import { CompareProvider } from '@/contexts/CompareContext';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin', 'vietnamese'] });
-
-export const metadata: Metadata = generateSEO({
-  title: 'Trang Chủ | soosanmotor.com - Nhà sản xuất sơ mi rơ moóc, cẩu, thùng xe tải đông lạnh, Xe xitéc (bồn) chở xăng dầu, xe chuyên dụng hàng đầu tại Việt Nam',
-  description: 'Chuyên sản xuất sơ mi rơ moóc, cẩu, thùng xe tải đông lạnh, Xe xitéc (bồn) chở xăng dầu và các loại xe chuyên dụng khác với đa dạng thương hiệu: Soosan, Doosung, Hyundai, Hino, Isuzu, Dongfeng, Chenglong... Giá tốt nhất thị trường!',
-  keywords: [
-    'xe tải',
-    'sơ mi rơ moóc',
-    'xe cẩu',
-    'xe đầu kéo',
-    'soosan',
-    'doosung',
-    'hyundai',
-    'isuzu',
-    'hino',
-    'xe tải việt nam',
-    'mua xe tải',
-    'giá xe tải',
-    'xe chuyên dụng',
-    'thùng đông lạnh',
-    'xe xitéc',
-    'bồn chở xăng dầu',
-  ],
-  canonical: '/',
-});
 
 export default function RootLayout({
   children,
@@ -53,7 +31,12 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <CompareProvider>
+          {children}
+          <Toaster />
+        </CompareProvider>
+      </body>
     </html>
   );
 }

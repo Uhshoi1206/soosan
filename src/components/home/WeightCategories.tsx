@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { truckWeights } from '@/data/truckData';
 import SectionTitle from '@/components/SectionTitle';
 import { Truck } from 'lucide-react';

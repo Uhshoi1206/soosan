@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import { Search, Phone, Calculator, CreditCard, GitCompare } from 'lucide-react';
 import { Button } from './ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -16,7 +17,7 @@ import { useCompare } from '@/contexts/CompareContext';
 
 const Header: React.FC = () => {
   const isMobile = useIsMobile();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [open, setOpen] = useState(false);
   const { generateCompareUrl } = useCompare();
@@ -24,14 +25,14 @@ const Header: React.FC = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+      router.push(`/search?q=${encodeURIComponent(searchTerm)}`);
       setOpen(false);
     }
   };
   
   const handleCompareClick = () => {
     const compareUrl = generateCompareUrl();
-    navigate(compareUrl);
+    router.push(compareUrl);
   };
 
   return (
@@ -39,7 +40,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2">
             <img 
               src="https://cdn.soosanmotor.com/soosanmotor.com_logo_Soosan.webp" 
               alt="soosanmotor.com Logo" 
@@ -50,10 +51,10 @@ const Header: React.FC = () => {
           {/* Desktop Navigation */}
           {!isMobile && (
             <nav className="hidden md:flex items-center space-x-4">
-              <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
                 Trang chủ
               </Link>
-              <Link to="/danh-muc-xe" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="/danh-muc-xe" className="text-sm font-medium hover:text-primary transition-colors">
                 Danh mục xe
               </Link>
               <div 
@@ -66,21 +67,21 @@ const Header: React.FC = () => {
                   <CompareBadge className="absolute -top-2 -right-6" />
                 </span>
               </div>
-              <Link to="/du-toan-chi-phi" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+              <Link href="/du-toan-chi-phi" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
                 <Calculator className="h-3 w-3" />
                 Dự toán chi phí
               </Link>
-              <Link to="/tinh-lai-suat" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+              <Link href="/tinh-lai-suat" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
                 <CreditCard className="h-3 w-3" />
                 Tính lãi suất vay
               </Link>
-              <Link to="/gioi-thieu" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="/gioi-thieu" className="text-sm font-medium hover:text-primary transition-colors">
                 Giới thiệu
               </Link>
-              <Link to="/blog" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
                 Tin tức
               </Link>
-              <Link to="/lien-he" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="/lien-he" className="text-sm font-medium hover:text-primary transition-colors">
                 Liên hệ
               </Link>
             </nav>

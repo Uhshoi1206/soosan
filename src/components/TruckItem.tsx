@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import { Truck, getVehicleUrlPrefix } from '@/models/TruckTypes';
 import { Badge } from '@/components/ui/badge';
 import { useCompare } from '@/contexts/CompareContext';
@@ -14,7 +15,7 @@ interface TruckItemProps {
 const TruckItem = ({ truck }: TruckItemProps) => {
   const vehicleUrlPrefix = getVehicleUrlPrefix(truck.type);
   const { addToCompare, removeFromCompare, isInCompare, compareItems } = useCompare();
-  const navigate = useNavigate();
+  const router = useRouter();
   
   const handleToggleCompare = (e: React.MouseEvent) => {
     e.preventDefault(); // Ngăn chặn sự kiện click lan tỏa đến thành phần cha
@@ -30,7 +31,7 @@ const TruckItem = ({ truck }: TruckItemProps) => {
         setTimeout(() => {
           const shouldNavigate = window.confirm('Bạn đã thêm xe vào danh sách so sánh. Bạn có muốn đi đến trang so sánh ngay bây giờ không?');
           if (shouldNavigate) {
-            navigate('/so-sanh-xe');
+            router.push('/so-sanh-xe');
             window.scrollTo(0, 0);
           }
         }, 300);
@@ -49,7 +50,7 @@ const TruckItem = ({ truck }: TruckItemProps) => {
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 h-full flex flex-col">
       <div className="relative">
-        <Link to={`/${vehicleUrlPrefix}/${truck.slug}`} onClick={() => window.scrollTo(0, 0)}>
+        <Link href={`/${vehicleUrlPrefix}/${truck.slug}`} onClick={() => window.scrollTo(0, 0)}>
           <OptimizedImage 
             src={truck.thumbnailUrl} 
             alt={truck.name} 
@@ -96,7 +97,7 @@ const TruckItem = ({ truck }: TruckItemProps) => {
           <span className="text-gray-500 text-sm">
             {renderBrands()}
           </span>
-          <Link to={`/${vehicleUrlPrefix}/${truck.slug}`} className="group" onClick={() => window.scrollTo(0, 0)}>
+          <Link href={`/${vehicleUrlPrefix}/${truck.slug}`} className="group" onClick={() => window.scrollTo(0, 0)}>
             <h3 className="font-bold text-lg mb-2 hover:text-red-600 transition-colors line-clamp-2">
               {truck.name}
             </h3>

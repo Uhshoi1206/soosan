@@ -5,7 +5,7 @@ import { getCategoryName } from '@/config/categoryVisibility';
 import { Button } from '@/components/ui/button';
 import { useCompare } from '@/contexts/CompareContext';
 import { X, Trash2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 
 interface CompareTableProps {
@@ -400,7 +400,7 @@ const CompareTable: React.FC<CompareTableProps> = ({ trucks }) => {
                         useCase="thumbnail"
                       />
                     </div>
-                    <Link to={`/${truck.type}/${truck.slug}`} className="font-bold text-lg hover:text-primary transition-colors">
+                    <Link href={`/${truck.type}/${truck.slug}`} className="font-bold text-lg hover:text-primary transition-colors">
                       {truck.name}
                     </Link>
                     <div className="text-xs text-gray-500 mt-1">

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Truck } from '@/models/TruckTypes';
 import SectionTitle from '@/components/SectionTitle';
 import { OptimizedImage } from '@/components/ui/optimized-image';

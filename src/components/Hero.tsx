@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from './ui/button';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 
 const Hero: React.FC = () => {
@@ -27,10 +27,10 @@ const Hero: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
             <Button asChild size="lg" className="bg-primary hover:bg-primary-700 text-white font-medium">
-              <Link to="/danh-muc-xe">Xem danh mục xe</Link>
+              <Link href="/danh-muc-xe">Xem danh mục xe</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-gray-900">
-              <Link to="/lien-he">Liên hệ tư vấn</Link>
+              <Link href="/lien-he">Liên hệ tư vấn</Link>
             </Button>
           </div>
         </div>
