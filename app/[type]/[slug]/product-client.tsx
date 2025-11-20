@@ -1,6 +1,6 @@
 'use client';
 
-import TruckDetail from '@/pages/TruckDetail';
+import TruckDetail from '@/pages_old/TruckDetail';
 import { Truck } from '@/models/TruckTypes';
 
 interface ProductDetailClientProps {

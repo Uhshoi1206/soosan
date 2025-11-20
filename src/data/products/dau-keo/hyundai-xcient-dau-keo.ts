@@ -1,15 +1,6 @@
 
 import { Truck } from '@/models/TruckTypes';
 
-// Import hình ảnh thực tế của sản phẩm
-import hyundaiXcientImg1 from '@/assets/hyundai-xcient-dau-keo-1.jpg';
-import hyundaiXcientImg2 from '@/assets/hyundai-xcient-dau-keo-2.jpg';
-import hyundaiXcientImg3 from '@/assets/hyundai-xcient-dau-keo-3.jpg';
-import hyundaiXcientImg4 from '@/assets/hyundai-xcient-dau-keo-4.jpg';
-import hyundaiXcientImg5 from '@/assets/hyundai-xcient-dau-keo-5.jpg';
-import hyundaiXcientImg6 from '@/assets/hyundai-xcient-dau-keo-6.jpg';
-import hyundaiXcientImg7 from '@/assets/hyundai-xcient-dau-keo-7.jpg';
-
 export const hyundaiXcientDauKeo: Truck = {
   id: "dau-keo-hyundai-xcient-dau-keo",
   name: "Hyundai Xcient Đầu Kéo",
@@ -27,15 +18,15 @@ export const hyundaiXcientDauKeo: Truck = {
   isNew: true,
   isHot: true,
   origin: "Hàn Quốc",
-  thumbnailUrl: hyundaiXcientImg1,
+  thumbnailUrl: "https://hyundainamphat.com.vn/images/DAU%20KEO%20XCIENT/%C4%90%E1%BA%A7u%20k%C3%A9o%20xcient/daukeo_hyundai_xcient_0.jpg",
   images: [
-    hyundaiXcientImg1,
-    hyundaiXcientImg2,
-    hyundaiXcientImg3,
-    hyundaiXcientImg4,
-    hyundaiXcientImg5,
-    hyundaiXcientImg6,
-    hyundaiXcientImg7
+    "https://hyundainamphat.com.vn/images/DAU%20KEO%20XCIENT/%C4%90%E1%BA%A7u%20k%C3%A9o%20xcient/daukeo_hyundai_xcient_0.jpg",
+    "https://hyundainamphat.com.vn/images/DAU%20KEO%20XCIENT/%C4%90%E1%BA%A7u%20k%C3%A9o%20xcient/Hyundai_xcient_h%C3%A0n_qu%E1%BB%91c.jpg",
+    "http://hyundainamphat.com.vn/images/Xcient/Ngoai%20That/den_truoc_ben_xcient.jpg",
+    "http://hyundainamphat.com.vn/images/Xcient/Ngoai%20That/ngoai_that_ben_xcient_3_chan.jpg",
+    "http://hyundainamphat.com.vn/images/Xcient/Noi%20That%201/noi_that_ben_xcient.jpg",
+    "http://hyundainamphat.com.vn/images/Xcient/Dong%20Co/dong_co_ben_xcient_1_.jpg",
+    "https://hyundainamphat.com.vn/images/DAU%20KEO%20XCIENT/%C4%90%E1%BA%A7u%20k%C3%A9o%20xcient/dau_keo_xcient_hyundai_7_.jpg"
   ],
   description: "Xe đầu kéo Hyundai Xcient với công nghệ châu Âu hiện đại, sức kéo mạnh mẽ, phù hợp vận chuyển container và mooc hạng nặng.",
   detailedDescription: `

@@ -1,151 +1,77 @@
-
 import { BlogPost } from '@/models/BlogPost';
+import * as industryNews from '@/data/blog-posts/industry-news';
+import * as productReview from '@/data/blog-posts/product-review';
+import * as buyingGuide from '@/data/blog-posts/buying-guide';
+import * as driverTips from '@/data/blog-posts/driver-tips';
+import * as maintenance from '@/data/blog-posts/maintenance';
+import * as technology from '@/data/blog-posts/technology';
 
-// Tự động load tất cả bài viết từ thư mục industry-news
 const loadIndustryNewsPosts = async (): Promise<BlogPost[]> => {
-  try {
-    const modules = import.meta.glob('/src/data/blog-posts/industry-news/*.ts', { eager: true });
-    const posts: BlogPost[] = [];
-    
-    for (const path in modules) {
-      const module = modules[path] as any;
-      // Lấy tất cả exports từ file (trừ default export)
-      Object.keys(module).forEach(key => {
-        if (key !== 'default' && module[key] && typeof module[key] === 'object' && module[key].id) {
-          posts.push(module[key]);
-        }
-      });
+  const posts: BlogPost[] = [];
+  Object.keys(industryNews).forEach(key => {
+    const item = (industryNews as any)[key];
+    if (key !== 'default' && item && typeof item === 'object' && item.id) {
+      posts.push(item);
     }
-    
-    return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
-  } catch (error) {
-    console.error('Error loading industry news posts:', error);
-    return [];
-  }
+  });
+  return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 };
 
-// Tự động load tất cả bài viết từ thư mục product-review
 const loadProductReviewPosts = async (): Promise<BlogPost[]> => {
-  try {
-    const modules = import.meta.glob('/src/data/blog-posts/product-review/*.ts', { eager: true });
-    const posts: BlogPost[] = [];
-    
-    for (const path in modules) {
-      if (path.includes('index.ts')) continue; // Bỏ qua file index.ts
-      
-      const module = modules[path] as any;
-      // Lấy tất cả exports từ file (trừ default export)
-      Object.keys(module).forEach(key => {
-        if (key !== 'default' && module[key] && typeof module[key] === 'object' && module[key].id) {
-          posts.push(module[key]);
-        }
-      });
+  const posts: BlogPost[] = [];
+  Object.keys(productReview).forEach(key => {
+    const item = (productReview as any)[key];
+    if (key !== 'default' && item && typeof item === 'object' && item.id) {
+      posts.push(item);
     }
-    
-    return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
-  } catch (error) {
-    console.error('Error loading product review posts:', error);
-    return [];
-  }
+  });
+  return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 };
 
-// Tự động load tất cả bài viết từ thư mục buying-guide
 const loadBuyingGuidePosts = async (): Promise<BlogPost[]> => {
-  try {
-    const modules = import.meta.glob('/src/data/blog-posts/buying-guide/*.ts', { eager: true });
-    const posts: BlogPost[] = [];
-    
-    for (const path in modules) {
-      if (path.includes('index.ts')) continue;
-      
-      const module = modules[path] as any;
-      Object.keys(module).forEach(key => {
-        if (key !== 'default' && module[key] && typeof module[key] === 'object' && module[key].id) {
-          posts.push(module[key]);
-        }
-      });
+  const posts: BlogPost[] = [];
+  Object.keys(buyingGuide).forEach(key => {
+    const item = (buyingGuide as any)[key];
+    if (key !== 'default' && item && typeof item === 'object' && item.id) {
+      posts.push(item);
     }
-    
-    return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
-  } catch (error) {
-    console.error('Error loading buying guide posts:', error);
-    return [];
-  }
+  });
+  return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 };
 
-// Tự động load tất cả bài viết từ thư mục driver-tips
 const loadDriverTipsPosts = async (): Promise<BlogPost[]> => {
-  try {
-    const modules = import.meta.glob('/src/data/blog-posts/driver-tips/*.ts', { eager: true });
-    const posts: BlogPost[] = [];
-    
-    for (const path in modules) {
-      if (path.includes('index.ts')) continue;
-      
-      const module = modules[path] as any;
-      Object.keys(module).forEach(key => {
-        if (key !== 'default' && module[key] && typeof module[key] === 'object' && module[key].id) {
-          posts.push(module[key]);
-        }
-      });
+  const posts: BlogPost[] = [];
+  Object.keys(driverTips).forEach(key => {
+    const item = (driverTips as any)[key];
+    if (key !== 'default' && item && typeof item === 'object' && item.id) {
+      posts.push(item);
     }
-    
-    return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
-  } catch (error) {
-    console.error('Error loading driver tips posts:', error);
-    return [];
-  }
+  });
+  return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 };
 
-// Tự động load tất cả bài viết từ thư mục maintenance
 const loadMaintenancePosts = async (): Promise<BlogPost[]> => {
-  try {
-    const modules = import.meta.glob('/src/data/blog-posts/maintenance/*.ts', { eager: true });
-    const posts: BlogPost[] = [];
-    
-    for (const path in modules) {
-      if (path.includes('index.ts')) continue;
-      
-      const module = modules[path] as any;
-      Object.keys(module).forEach(key => {
-        if (key !== 'default' && module[key] && typeof module[key] === 'object' && module[key].id) {
-          posts.push(module[key]);
-        }
-      });
+  const posts: BlogPost[] = [];
+  Object.keys(maintenance).forEach(key => {
+    const item = (maintenance as any)[key];
+    if (key !== 'default' && item && typeof item === 'object' && item.id) {
+      posts.push(item);
     }
-    
-    return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
-  } catch (error) {
-    console.error('Error loading maintenance posts:', error);
-    return [];
-  }
+  });
+  return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 };
 
-// Tự động load tất cả bài viết từ thư mục technology
 const loadTechnologyPosts = async (): Promise<BlogPost[]> => {
-  try {
-    const modules = import.meta.glob('/src/data/blog-posts/technology/*.ts', { eager: true });
-    const posts: BlogPost[] = [];
-    
-    for (const path in modules) {
-      if (path.includes('index.ts')) continue;
-      
-      const module = modules[path] as any;
-      Object.keys(module).forEach(key => {
-        if (key !== 'default' && module[key] && typeof module[key] === 'object' && module[key].id) {
-          posts.push(module[key]);
-        }
-      });
+  const posts: BlogPost[] = [];
+  Object.keys(technology).forEach(key => {
+    const item = (technology as any)[key];
+    if (key !== 'default' && item && typeof item === 'object' && item.id) {
+      posts.push(item);
     }
-    
-    return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
-  } catch (error) {
-    console.error('Error loading technology posts:', error);
-    return [];
-  }
+  });
+  return posts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 };
 
-// Function chính để load tất cả bài viết
 export const loadAllBlogPosts = async (): Promise<{
   industryNewsPosts: BlogPost[];
   productReviewPosts: BlogPost[];
@@ -156,12 +82,12 @@ export const loadAllBlogPosts = async (): Promise<{
   allBlogPosts: BlogPost[];
 }> => {
   const [
-    industryNewsPosts,
-    productReviewPosts,
-    buyingGuidePosts,
-    driverTipsPosts,
-    maintenancePosts,
-    technologyPosts
+    industryNewsPostsData,
+    productReviewPostsData,
+    buyingGuidePostsData,
+    driverTipsPostsData,
+    maintenancePostsData,
+    technologyPostsData
   ] = await Promise.all([
     loadIndustryNewsPosts(),
     loadProductReviewPosts(),
@@ -172,21 +98,21 @@ export const loadAllBlogPosts = async (): Promise<{
   ]);
 
   const allBlogPosts = [
-    ...industryNewsPosts,
-    ...productReviewPosts,
-    ...buyingGuidePosts,
-    ...driverTipsPosts,
-    ...maintenancePosts,
-    ...technologyPosts
+    ...industryNewsPostsData,
+    ...productReviewPostsData,
+    ...buyingGuidePostsData,
+    ...driverTipsPostsData,
+    ...maintenancePostsData,
+    ...technologyPostsData
   ].sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 
   return {
-    industryNewsPosts,
-    productReviewPosts,
-    buyingGuidePosts,
-    driverTipsPosts,
-    maintenancePosts,
-    technologyPosts,
+    industryNewsPosts: industryNewsPostsData,
+    productReviewPosts: productReviewPostsData,
+    buyingGuidePosts: buyingGuidePostsData,
+    driverTipsPosts: driverTipsPostsData,
+    maintenancePosts: maintenancePostsData,
+    technologyPosts: technologyPostsData,
     allBlogPosts
   };
 };

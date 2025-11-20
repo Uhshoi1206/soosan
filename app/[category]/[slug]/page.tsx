@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBlogData } from '@/data/blog-posts';
 import { generateBlogSEO } from '@/lib/seo';
-import { generateArticleSchema, generateBreadcrumbList } from '@/lib/structured-data';
+import { generateArticleSchema } from '@/lib/structured-data';
 import BlogPostClient from './blog-post-client';
 
 interface PageProps {
@@ -45,21 +45,12 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const articleSchema = generateArticleSchema(post);
-  const breadcrumbSchema = generateBreadcrumbList([
-    { name: 'Trang chủ', url: '/' },
-    { name: 'Blog', url: '/blog' },
-    { name: post.title, url: `/${post.category}/${post.slug}` },
-  ]);
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <BlogPostClient />
     </>

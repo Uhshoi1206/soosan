@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { trucks } from '@/data/products';
 import { generateProductSEO } from '@/lib/seo';
-import { generateProductSchema, generateBreadcrumbList } from '@/lib/structured-data';
+import { generateProductSchema } from '@/lib/structured-data';
 import ProductDetailClient from './product-client';
 
 interface PageProps {
@@ -42,21 +42,12 @@ export default async function ProductPage({ params }: PageProps) {
   }
 
   const productSchema = generateProductSchema(product);
-  const breadcrumbSchema = generateBreadcrumbList([
-    { name: 'Trang chủ', url: '/' },
-    { name: 'Danh mục xe', url: '/danh-muc-xe' },
-    { name: product.name, url: `/${product.type}/${product.slug}` },
-  ]);
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <ProductDetailClient product={product} />
     </>
