@@ -6,7 +6,7 @@ export interface SEOConfig {
   keywords?: string[];
   canonical?: string;
   ogImage?: string;
-  ogType?: 'website' | 'article' | 'product';
+  ogType?: 'website' | 'article';
   publishedTime?: string;
   modifiedTime?: string;
   authors?: string[];
@@ -101,7 +101,7 @@ export function generateProductSEO(product: {
     ],
     canonical: `/${product.type}/${product.slug}`,
     ogImage: product.thumbnailUrl || DEFAULT_OG_IMAGE,
-    ogType: 'product',
+    ogType: 'website',
   });
 }
 

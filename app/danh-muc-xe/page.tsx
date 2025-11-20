@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { Metadata } from 'next';
 import { generateSEO } from '@/lib/seo';
 import CatalogClient from './catalog-client';

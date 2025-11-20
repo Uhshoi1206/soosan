@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { generateSEO } from '@/lib/seo';
 import BlogPageClient from './blog-client';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = generateSEO({
   title: 'Blog - Tin tức & Kiến thức về Xe Tải',
   description: 'Cập nhật tin tức mới nhất về ngành xe tải, hướng dẫn mua xe, bảo dưỡng xe và chia sẻ kinh nghiệm lái xe an toàn.',
