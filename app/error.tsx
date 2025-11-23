@@ -12,6 +12,9 @@ export default function Error({
 }) {
   useEffect(() => {
     console.error('Application error:', error);
+    console.error('Error stack:', error.stack);
+    console.error('Error digest:', error.digest);
+    console.error('Error message:', error.message);
   }, [error]);
 
   return (
@@ -57,16 +60,16 @@ export default function Error({
           </Link>
         </div>
 
-        {process.env.NODE_ENV === 'development' && (
-          <details className="mt-6 text-left">
-            <summary className="cursor-pointer text-sm text-gray-500 hover:text-gray-700">
-              Chi tiết lỗi (Development only)
-            </summary>
-            <pre className="mt-2 text-xs bg-gray-100 p-3 rounded overflow-auto max-h-40">
-              {error.message}
-            </pre>
-          </details>
-        )}
+        <details className="mt-6 text-left">
+          <summary className="cursor-pointer text-sm text-gray-500 hover:text-gray-700">
+            Chi tiết lỗi
+          </summary>
+          <pre className="mt-2 text-xs bg-gray-100 p-3 rounded overflow-auto max-h-60 text-left">
+            {error.message}
+            {error.stack && `\n\nStack:\n${error.stack}`}
+            {error.digest && `\n\nDigest: ${error.digest}`}
+          </pre>
+        </details>
       </div>
     </div>
   );

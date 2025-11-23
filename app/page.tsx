@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
 import { generateSEO } from '@/lib/seo';
-import HomePage from './home-client';
-
-export const dynamic = 'force-dynamic';
+import HomePageV2 from './home-client-v2';
 
 export const metadata: Metadata = generateSEO({
   title: 'Trang Chủ | soosanmotor.com - Nhà sản xuất sơ mi rơ moóc, cẩu, thùng xe tải đông lạnh, Xe xitéc (bồn) chở xăng dầu, xe chuyên dụng hàng đầu tại Việt Nam',
@@ -26,5 +24,5 @@ export const metadata: Metadata = generateSEO({
 });
 
 export default function Page() {
-  return <HomePage />;
+  return <HomePageV2 />;
 }
