@@ -21,24 +21,38 @@ const STORAGE_KEY = 'xetaiviet_compare_items';
 
 export const CompareProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [compareItems, setCompareItems] = useState<Truck[]>([]);
-  
+  const [isClient, setIsClient] = useState(false);
+
+  // Đánh dấu đã mount trên client
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // Load từ localStorage khi khởi tạo
   useEffect(() => {
-    const storedItems = localStorage.getItem(STORAGE_KEY);
-    if (storedItems) {
-      try {
+    if (!isClient) return;
+
+    try {
+      const storedItems = localStorage.getItem(STORAGE_KEY);
+      if (storedItems) {
         const parsedItems = JSON.parse(storedItems);
         setCompareItems(parsedItems);
-      } catch (error) {
-        console.error('Error parsing stored compare items', error);
       }
+    } catch (error) {
+      console.error('Error parsing stored compare items', error);
     }
-  }, []);
+  }, [isClient]);
 
   // Lưu vào localStorage khi state thay đổi
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(compareItems));
-  }, [compareItems]);
+    if (!isClient) return;
+
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(compareItems));
+    } catch (error) {
+      console.error('Error saving to localStorage', error);
+    }
+  }, [compareItems, isClient]);
 
   // Thêm xe vào danh sách so sánh
   const addToCompare = (truck: Truck) => {
