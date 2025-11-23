@@ -12,7 +12,6 @@ interface PageProps {
   }>;
 }
 
-export const dynamicParams = false;
 
 export function generateStaticParams() {
   const { allBlogPosts } = getBlogData();

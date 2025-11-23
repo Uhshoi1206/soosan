@@ -1,6 +1,5 @@
 
 import { BlogPost } from '@/models/BlogPost';
-import { loadAllBlogPosts } from '@/utils/blogLoader';
 import * as industryNewsModule from './industry-news';
 import * as productReviewModule from './product-review';
 import * as buyingGuideModule from './buying-guide';
@@ -8,27 +7,7 @@ import * as driverTipsModule from './driver-tips';
 import * as maintenanceModule from './maintenance';
 import * as technologyModule from './technology';
 
-// Tạo một instance để lưu trữ dữ liệu đã được load
-let cachedBlogData: {
-  industryNewsPosts: BlogPost[];
-  productReviewPosts: BlogPost[];
-  buyingGuidePosts: BlogPost[];
-  driverTipsPosts: BlogPost[];
-  maintenancePosts: BlogPost[];
-  technologyPosts: BlogPost[];
-  allBlogPosts: BlogPost[];
-} | null = null;
-
-// Load dữ liệu blog và luôn refresh để có bài viết mới nhất
-const getBlogData = () => {
-  // Synchronous load for static export
-  if (!cachedBlogData || cachedBlogData.allBlogPosts.length === 0) {
-    cachedBlogData = loadAllBlogPostsSync();
-  }
-  return cachedBlogData;
-};
-
-// Synchronous version for build time
+// Synchronous loader
 const loadAllBlogPostsSync = () => {
   const industryNews = Object.values(industryNewsModule).filter((item): item is BlogPost =>
     typeof item === 'object' && item !== null && 'id' in item
@@ -69,25 +48,17 @@ const loadAllBlogPostsSync = () => {
   };
 };
 
-// Initialize data immediately
-cachedBlogData = loadAllBlogPostsSync();
+// Initialize data immediately for synchronous access
+const cachedBlogData = loadAllBlogPostsSync();
+
+// Synchronous getter for build time
+export const getBlogData = () => cachedBlogData;
 
 // Export initialized data
-const industryNewsPosts = cachedBlogData.industryNewsPosts;
-const productReviewPosts = cachedBlogData.productReviewPosts;
-const buyingGuidePosts = cachedBlogData.buyingGuidePosts;
-const driverTipsPosts = cachedBlogData.driverTipsPosts;
-const maintenancePosts = cachedBlogData.maintenancePosts;
-const technologyPosts = cachedBlogData.technologyPosts;
-const allBlogPosts = cachedBlogData.allBlogPosts;
-
-export { 
-  industryNewsPosts, 
-  productReviewPosts, 
-  buyingGuidePosts, 
-  driverTipsPosts, 
-  maintenancePosts, 
-  technologyPosts, 
-  allBlogPosts,
-  getBlogData 
-};
+export const industryNewsPosts = cachedBlogData.industryNewsPosts;
+export const productReviewPosts = cachedBlogData.productReviewPosts;
+export const buyingGuidePosts = cachedBlogData.buyingGuidePosts;
+export const driverTipsPosts = cachedBlogData.driverTipsPosts;
+export const maintenancePosts = cachedBlogData.maintenancePosts;
+export const technologyPosts = cachedBlogData.technologyPosts;
+export const allBlogPosts = cachedBlogData.allBlogPosts;
