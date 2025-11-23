@@ -3,6 +3,7 @@ import { generateSEO } from '@/lib/seo';
 import HomePage from './home-client';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
 
 export const metadata: Metadata = generateSEO({
   title: 'Trang Chủ | soosanmotor.com - Nhà sản xuất sơ mi rơ moóc, cẩu, thùng xe tải đông lạnh, Xe xitéc (bồn) chở xăng dầu, xe chuyên dụng hàng đầu tại Việt Nam',

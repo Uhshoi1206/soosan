@@ -25,17 +25,13 @@ export default function HomePage() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
 
   useEffect(() => {
-    const loadBlogData = async () => {
-      try {
-        const data = await getBlogData();
-        setBlogPosts(data.allBlogPosts);
-      } catch (error) {
-        console.error('Error loading blog data:', error);
-        setBlogPosts([]);
-      }
-    };
-
-    loadBlogData();
+    try {
+      const data = getBlogData();
+      setBlogPosts(data.allBlogPosts);
+    } catch (error) {
+      console.error('Error loading blog data:', error);
+      setBlogPosts([]);
+    }
   }, []);
 
   const sortedPosts = [...blogPosts].sort((a, b) =>
