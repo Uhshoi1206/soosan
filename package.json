@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "dev:next": "next dev",
+    "dev": "next dev --experimental-https=false",
+    "dev:next": "next dev --experimental-https=false",
     "build": "next build",
     "build:vite": "vite build",
     "build:next": "next build",
